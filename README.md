@@ -83,5 +83,5 @@ root@bc9f450caf22:/# exit
 jpetazzo@tarrasque:~/Work/DOTCLOUD/dind$
 ```
 At that point, you should blast Hans Zimmer's [Dream Is Collapsing](
-www.youtube.com/watch?v=_IdA7aV4ftY) on your loudspeakers while twirling
+http://www.youtube.com/watch?v=_IdA7aV4ftY) on your loudspeakers while twirling
 a spinning top.
