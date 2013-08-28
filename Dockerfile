@@ -1,5 +1,5 @@
-MAINTAINER jerome.petazzoni@dotcloud.com
 FROM ubuntu
+MAINTAINER jerome.petazzoni@dotcloud.com
 RUN echo deb http://archive.ubuntu.com/ubuntu precise universe > /etc/apt/sources.list.d/universe.list
 RUN apt-get update -qq
 RUN apt-get install -qqy iptables ca-certificates lxc
