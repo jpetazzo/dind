@@ -12,17 +12,21 @@ mountpoint -q $CGROUP ||
 		exit 1
 	}
 
-while read SUBSYS HIERARCHY NUM_CGROUPS ENABLED
+# Mount the cgroup hierarchies exactly as they are in the parent system.
+for SUBSYS in $(cut -d: -f2 /proc/1/cgroup)
 do
-	[ "$ENABLED" = 0 ] && continue
-	[ "$ENABLED" = enabled ] && continue
-	# Those guys are special. Let's skip them for now.
-	[ "$SUBSYS" = cpu ] && continue
-	[ "$SUBSYS" = cpuacct ] && continue
 	[ -d $CGROUP/$SUBSYS ] || mkdir $CGROUP/$SUBSYS
 	mountpoint -q $CGROUP/$SUBSYS || 
 		mount -n -t cgroup -o $SUBSYS cgroup $CGROUP/$SUBSYS
-done </proc/cgroups
+done
+
+# Note: as I write those lines, the LXC userland tools cannot setup
+# a "sub-container" properly if the "devices" cgroup is not in its
+# own hierarchy. Let's detect this and issue a warning.
+grep -q :devices: /proc/1/cgroup ||
+	echo "WARNING: the 'devices' cgroup should be in its own hierarchy."
+grep -qw devices /proc/1/cgroup ||
+	echo "WARNING: it looks like the 'devices' cgroup is not mounted."
 
 # Now, close extraneous file descriptors.
 pushd /proc/self/fd

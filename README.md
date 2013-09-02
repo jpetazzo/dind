@@ -11,17 +11,17 @@ There is only one requirement: your Docker version should support the
 ## Quickstart
 
 Build the image:
-```
+```bash
 docker build -t dind .
 ```
 
 Run Docker-in-Docker and get a shell where you can play:
-```
+```bash
 docker run -privileged -t -i dind
 ```
 
 Run Docker-in-Docker and expose the inside Docker to the outside world:
-```
+```bash
 docker run -privileged -d -p 4444 -e PORT=4444 dind
 ```
 
@@ -31,13 +31,25 @@ the Docker daemon and expose it over said port. When started *without* the
 background and execute a shell for you to play.
 
 
+## It didn't work!
+
+If you get a weird permission message, check the output of `dmesg`: it could
+be caused by AppArmor. In that case, try again, adding an extra flag to
+kick AppArmor out of the equation:
+
+```bash
+docker run -privileged -lxc-conf="aa_profile=unconfined" -t -i dind
+```
+
+
 ## How It Works
 
 The main trick is to have the `-privileged` flag. Then, there are a few things
 to care about:
 
-- cgroups have to be properly mounted; this is done by the default entrypoint,
-  in a way inspired by `cgroups-mount`;
+- cgroups pseudo-filesystems have to be mounted, and they have to be mounted
+  with the same hierarchies than the parent environment; this is done by a
+  wrapper script, which is setup to run by default;
 - `/var/lib/docker` cannot be on AUFS, so we make it a volume.
 
 That's it.
@@ -75,13 +87,14 @@ the experiment at home.
 
 Also, when you will be exiting a nested Docker, this will happen:
 
-```
+```bash
 root@975423921ac5:/# exit
 root@6b2ae8bf2f10:/# exit
 root@419a67dfdf27:/# exit
 root@bc9f450caf22:/# exit
 jpetazzo@tarrasque:~/Work/DOTCLOUD/dind$
 ```
+
 At that point, you should blast Hans Zimmer's [Dream Is Collapsing](
 http://www.youtube.com/watch?v=_IdA7aV4ftY) on your loudspeakers while twirling
 a spinning top.
