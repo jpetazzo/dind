@@ -38,7 +38,7 @@ be caused by AppArmor. In that case, try again, adding an extra flag to
 kick AppArmor out of the equation:
 
 ```bash
-docker run -privileged -lxc-conf="aa_profile=unconfined" -t -i dind
+docker run -privileged -lxc-conf="lxc.aa_profile=unconfined" -t -i dind
 ```
 
 
