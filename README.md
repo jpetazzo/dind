@@ -41,6 +41,25 @@ kick AppArmor out of the equation:
 docker run -privileged -lxc-conf="lxc.aa_profile=unconfined" -t -i dind
 ```
 
+If you get the warning:
+
+````
+WARNING: the 'devices' cgroup should be in its own hierarchy.
+````
+
+When starting up dind, you can get around this by shutting down docker and running:
+
+````
+# /etc/init.d/lxc stop
+# umount /sys/fs/cgroup/
+# mount -t cgroup devices 1 /sys/fs/cgroup
+````
+
+If the unmount fails, you can find out the proper mount-point with:
+
+````
+$ cat /proc/mounts | grep cgroup
+````
 
 ## How It Works
 
