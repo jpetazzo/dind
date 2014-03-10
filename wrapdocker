@@ -77,6 +77,11 @@ do
 done
 popd >/dev/null
 
+
+# If a pidfile is still around (for example after a container restart),
+# delete it so that docker can start.
+rm -rf /var/run/docker.pid
+
 # If we were given a PORT environment variable, start as a simple daemon;
 # otherwise, spawn a shell as well
 if [ "$PORT" ]
