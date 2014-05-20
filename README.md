@@ -17,12 +17,12 @@ docker build -t dind .
 
 Run Docker-in-Docker and get a shell where you can play:
 ```bash
-docker run -privileged -t -i dind
+docker run --privileged -t -i dind
 ```
 
 Run Docker-in-Docker and expose the inside Docker to the outside world:
 ```bash
-docker run -privileged -d -p 4444 -e PORT=4444 dind
+docker run --privileged -d -p 4444 -e PORT=4444 dind
 ```
 
 Note: when started with the `PORT` environment variable, the image will just
@@ -38,7 +38,7 @@ be caused by AppArmor. In that case, try again, adding an extra flag to
 kick AppArmor out of the equation:
 
 ```bash
-docker run -privileged -lxc-conf="lxc.aa_profile=unconfined" -t -i dind
+docker run --privileged --lxc-conf="lxc.aa_profile=unconfined" -t -i dind
 ```
 
 If you get the warning:
