@@ -10,4 +10,4 @@ ADD https://get.docker.io/builds/Linux/x86_64/docker-latest /usr/local/bin/docke
 ADD ./wrapdocker /usr/local/bin/wrapdocker
 RUN chmod +x /usr/local/bin/docker /usr/local/bin/wrapdocker
 VOLUME /var/lib/docker
-CMD wrapdocker
+CMD ["wrapdocker"]
