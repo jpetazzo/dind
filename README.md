@@ -5,7 +5,7 @@ This recipe lets you run Docker within Docker.
 ![Inception's Spinning Top](spintop.jpg)
 
 There is only one requirement: your Docker version should support the
-`-privileged` flag.
+`--privileged` flag.
 
 
 ## Quickstart
@@ -63,7 +63,7 @@ $ cat /proc/mounts | grep cgroup
 
 ## How It Works
 
-The main trick is to have the `-privileged` flag. Then, there are a few things
+The main trick is to have the `--privileged` flag. Then, there are a few things
 to care about:
 
 - cgroups pseudo-filesystems have to be mounted, and they have to be mounted
