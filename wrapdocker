@@ -89,6 +89,6 @@ then
 	exec docker -d -H 0.0.0.0:$PORT
 else
 
-	docker -d &
+	docker -d &>/var/log/docker.log &
 	exec bash
 fi
