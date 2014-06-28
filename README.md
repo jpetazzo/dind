@@ -15,9 +15,16 @@ Build the image:
 docker build -t dind .
 ```
 
-Run Docker-in-Docker and get a shell where you can play:
+Run Docker-in-Docker and get a shell where you can play, and docker daemon logs
+to stdout:
 ```bash
 docker run --privileged -t -i dind
+```
+
+Run Docker-in-Docker and get a shell where you can play, but docker daemon logs
+into `/var/log/docker.log`:
+```bash
+docker run --privileged -t -i -e LOG=file dind
 ```
 
 Run Docker-in-Docker and expose the inside Docker to the outside world:
