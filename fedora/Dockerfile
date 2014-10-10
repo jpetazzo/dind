@@ -4,7 +4,7 @@ MAINTAINER amitsaha.in@gmail.com
 # Let's start with some basic stuff.
 RUN yum -y clean all
 RUN yum -y update
-RUN yum install -y iptables ca-certificates lxc
+RUN yum install -y iptables ca-certificates lxc e2fsprogs
 
 # Install Docker from Fedora repos
 RUN yum -y install docker-io
