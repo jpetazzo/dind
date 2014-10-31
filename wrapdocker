@@ -91,9 +91,9 @@ then
 else
 	if [ "$LOG" == "file" ]
 	then
-		docker -d &>/var/log/docker.log &
+		docker -d $DOCKER_DAEMON_ARGS &>/var/log/docker.log &
 	else
-		docker -d &
+		docker -d $DOCKER_DAEMON_ARGS &
 	fi
 	exec bash
 fi
