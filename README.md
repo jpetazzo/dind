@@ -37,6 +37,13 @@ the Docker daemon and expose it over said port. When started *without* the
 `PORT` environment variable, the image will run the Docker daemon in the
 background and execute a shell for you to play.
 
+### Daemon configuration
+
+You can use the `DOCKER_DAEMON_ARGS` environment variable to configure the
+docker daemon with any extra options:
+```bash
+docker run --privileged -d -e DOCKER_DAEMON_ARGS="-D" dind
+```
 
 ## It didn't work!
 
