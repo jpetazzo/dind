@@ -87,7 +87,7 @@ rm -rf /var/run/docker.pid
 # otherwise, spawn a shell as well
 if [ "$PORT" ]
 then
-	exec docker -d -H 0.0.0.0:$PORT
+	exec docker -d -H 0.0.0.0:$PORT $DOCKER_DAEMON_ARGS
 else
 	if [ "$LOG" == "file" ]
 	then
