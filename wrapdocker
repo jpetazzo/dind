@@ -9,7 +9,7 @@ CGROUP=/sys/fs/cgroup
 
 mountpoint -q $CGROUP || 
 	mount -n -t tmpfs -o uid=0,gid=0,mode=0755 cgroup $CGROUP || {
-		echo "Could not make a tmpfs mount. Did you use -privileged?"
+		echo "Could not make a tmpfs mount. Did you use --privileged?"
 		exit 1
 	}
 
@@ -17,7 +17,7 @@ if [ -d /sys/kernel/security ] && ! mountpoint -q /sys/kernel/security
 then
     mount -t securityfs none /sys/kernel/security || {
         echo "Could not mount /sys/kernel/security."
-        echo "AppArmor detection and -privileged mode might break."
+        echo "AppArmor detection and --privileged mode might break."
     }
 fi
 
