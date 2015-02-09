@@ -5,14 +5,12 @@ MAINTAINER jerome.petazzoni@docker.com
 RUN apt-get update -qq && apt-get install -qqy \
     apt-transport-https \
     ca-certificates \
+    curl \
     lxc \
     iptables
     
 # Install Docker from Docker Inc. repositories.
-RUN echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list \
-  && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9 \
-  && apt-get update -qq \
-  && apt-get install -qqy lxc-docker
+RUN curl -sSL https://get.docker.com/ubuntu/ | sh
 
 # Install the magic wrapper.
 ADD ./wrapdocker /usr/local/bin/wrapdocker
