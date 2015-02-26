@@ -118,6 +118,9 @@ file descriptors inherited from the parent Docker and `lxc-start`
 those inherited file descriptors, or if you're trying to repeat
 the experiment at home.
 
+[kojiromike/inception](https://github.com/kojiromike/inception) is
+a wrapper script that uses dind to nest Docker to arbitrary depth.
+
 Also, when you will be exiting a nested Docker, this will happen:
 
 ```bash
