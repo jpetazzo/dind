@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Ensure that all nodes in /dev/mapper correspond to mapped devices currently loaded by the device-mapper kernel driver
+dmsetup mknodes
+
 # First, make sure that cgroups are mounted correctly.
 CGROUP=/sys/fs/cgroup
 : {LOG:=stdio}
