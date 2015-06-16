@@ -4,7 +4,7 @@ MAINTAINER git@yeoldegrove.de
 # Let's start with some basic stuff.
 RUN zypper --gpg-auto-import-keys --non-interactive refresh && \
     zypper --gpg-auto-import-keys --non-interactive update && \
-    zypper --gpg-auto-import-keys --non-interactive install --auto-agree-with-licenses docker
+    zypper --gpg-auto-import-keys --non-interactive install --auto-agree-with-licenses e2fsprogs apparmor-parser docker
 
 # Install the magic wrapper.
 ADD ./wrapdocker /usr/local/bin/wrapdocker
