@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Static binary - devicemapper storage driver not available"
+echo "Skipping dmsetup"
