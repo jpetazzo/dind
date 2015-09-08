@@ -8,6 +8,15 @@ There is only one requirement: your Docker version should support the
 `--privileged` flag.
 
 
+## A word of warning
+
+If you came here because you would like to run a testing system like
+Jenkins in a container, and want that container to spin up more containers,
+then please read this [blog post](
+http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
+first. Thank you!
+
+
 ## Quickstart
 
 Build the image:
