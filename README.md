@@ -17,6 +17,44 @@ http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
 first. Thank you!
 
 
+## Another word of warning
+
+This work is now obsolete, thanks to the [combined](
+https://github.com/docker/docker/pull/15596) [efforts](
+https://github.com/docker-library/official-images/blob/master/library/docker)
+of some amazing people like @jfrazelle and @tianon, who also 
+are black belts in the art of putting IKEA furniture together.
+
+If you want to run Docker-in-Docker today, all you need to do is:
+
+```bash
+docker run --privileged -d docker:dind
+```
+
+... And that's it; you get Docker running in Docker, thanks to
+the official Docker image, in its "Docker-in-Docker" flavor.
+You can then connect to this Docker instance by starting
+another Docker container linking to the first one (which is
+a pretty amazing thing to do).
+
+For more details about the `docker:dind` official image,
+explanations about how to use it, customize it to use
+specific storage drivers, and other tidbits of useful
+knowledge, check [its documentation on the Docker Hub](
+https://hub.docker.com/_/docker/).
+
+
+## If you read past this paragraph ...
+
+... Then you're probably an archaelogist, a masochist, or both.
+
+Seriously, though: the information below is here mostly
+for historical value, or if you want to understand how those
+things work under the hood.
+
+You've been warned!
+
+
 ## Quickstart
 
 Build the image:
