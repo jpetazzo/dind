@@ -7,10 +7,10 @@ dmsetup mknodes
 CGROUP=/sys/fs/cgroup
 : {LOG:=stdio}
 
-[ -d $CGROUP ] || 
+[ -d $CGROUP ] ||
 	mkdir $CGROUP
 
-mountpoint -q $CGROUP || 
+mountpoint -q $CGROUP ||
 	mount -n -t tmpfs -o uid=0,gid=0,mode=0755 cgroup $CGROUP || {
 		echo "Could not make a tmpfs mount. Did you use --privileged?"
 		exit 1
@@ -28,7 +28,7 @@ fi
 for SUBSYS in $(cut -d: -f2 /proc/1/cgroup)
 do
         [ -d $CGROUP/$SUBSYS ] || mkdir $CGROUP/$SUBSYS
-        mountpoint -q $CGROUP/$SUBSYS || 
+        mountpoint -q $CGROUP/$SUBSYS ||
                 mount -n -t cgroup -o $SUBSYS cgroup $CGROUP/$SUBSYS
 
         # The two following sections address a bug which manifests itself
@@ -90,14 +90,14 @@ rm -rf /var/run/docker.pid
 # otherwise, spawn a shell as well
 if [ "$PORT" ]
 then
-	exec docker -d -H 0.0.0.0:$PORT -H unix:///var/run/docker.sock \
+	exec docker daemon -H 0.0.0.0:$PORT -H unix:///var/run/docker.sock \
 		$DOCKER_DAEMON_ARGS
 else
 	if [ "$LOG" == "file" ]
 	then
-		docker -d $DOCKER_DAEMON_ARGS &>/var/log/docker.log &
+		docker daemon $DOCKER_DAEMON_ARGS &>/var/log/docker.log &
 	else
-		docker -d $DOCKER_DAEMON_ARGS &
+		docker daemon $DOCKER_DAEMON_ARGS &
 	fi
 	(( timeout = 60 + SECONDS ))
 	until docker info >/dev/null 2>&1
