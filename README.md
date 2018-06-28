@@ -46,7 +46,7 @@ https://hub.docker.com/_/docker/).
 
 ## If you read past this paragraph ...
 
-... Then you're probably an archaelogist, a masochist, or both.
+... Then you're probably an archaeologist, a masochist, or both.
 
 Seriously, though: the information below is here mostly
 for historical value, or if you want to understand how those
